@@ -1,0 +1,342 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+     <!--Inicio Declaração do beans ################################################### -->
+
+    <managed-bean>
+        <managed-bean-name>usuarioLogin</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.UsuarioAction</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>menuAction</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.MenuAction</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>usuarioAction</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.UsuarioAction</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>cargoAction</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.CargoAction</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+
+    <managed-bean>
+        <managed-bean-name>unidadeAction</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.UnidadeAction</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+
+    <managed-bean>
+        <managed-bean-name>registrologinAction</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.RegistrologinAction</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+     <!--Novos beans em 02/04/2011 ################################################### -->
+    <managed-bean>
+        <managed-bean-name>sateliteAction</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.SateliteAction</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>requisicaoAction</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.RequisicaoAction</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+
+   
+
+    <managed-bean>
+        <managed-bean-name>estacaoAction</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.EstacaoAction</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>missaoAction</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.MissaoAction</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>comandoAction</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.ComandoAction</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>respostaAction</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.RespostaAction</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+
+
+     <!--Fim Declaração do beans ################################################### -->
+
+
+     <!--Regras de Navegação index ############################################### -->
+
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+
+        <navigation-case>
+            <from-outcome>menu</from-outcome>
+            <to-view-id>/menu/menuPrincipal.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+
+<!--Regras de Navegação menuPrincipal  ############################################################################### -->
+    <navigation-rule>
+        
+        <!--<from-view-id>/menu/menuPrincipal.xhtml</from-view-id>-->
+
+<!--teste para lista de login  31/03  ############################################### -->
+
+<!--logOff    ############################################### -->
+        <navigation-case>
+            <from-outcome>logOff</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+
+<!--Requisicao  ############################################### -->
+        <navigation-case>
+            <from-outcome>calibracao</from-outcome>
+            <to-view-id>/operacao/requisicao/formCalibracao.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>requisicao</from-outcome>
+            <to-view-id>/operacao/requisicao/form.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>registroLoginListar</from-outcome>
+            <to-view-id>/cadastro/registrologin/listar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>usuarioListar</from-outcome>
+            <to-view-id>/cadastro/usuario/listar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cargoListar</from-outcome>
+            <to-view-id>/cadastro/cargo/listar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>historicoRequisicoes</from-outcome>
+            <to-view-id>/operacao/requisicao/listar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>emulacao</from-outcome>
+            <to-view-id>/operacao/requisicao/formEmulacao.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>relatorios</from-outcome>
+            <to-view-id>/operacao/requisicao/relatorios.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>historicoTransacao</from-outcome>
+            <to-view-id>/operacao/requisicao/historicoTransacao.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+
+
+
+     <!--Regras de Navegação cargo listar ############################################### -->
+    <navigation-rule>
+        <from-view-id>/cadastro/cargo/listar.xhtml</from-view-id>
+
+        <navigation-case>
+            <from-outcome>inserir</from-outcome>
+            <to-view-id>/cadastro/cargo/form.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>menu</from-outcome>
+            <to-view-id>/menu/menuPrincipal.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+    <!--Regras de Navegação cargo form ############################################### -->
+    <navigation-rule>
+        <from-view-id>/cadastro/cargo/form.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>alterar</from-outcome>
+            <to-view-id>/cadastro/cargo/listar.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+ <!--Regras de Navegação cargo listar ############################################### -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>cargoListar</from-outcome>
+            <to-view-id>/cadastro/cargo/listar.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+     <!--Regras de Navegação usuario listar ############################################### -->
+    <navigation-rule>
+        <from-view-id>/cadastro/usuario/listar.xhtml</from-view-id>
+
+        <navigation-case>
+            <from-outcome>menu</from-outcome>
+            <to-view-id>/menu/menuPrincipal.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>alterar</from-outcome>
+            <to-view-id>/cadastro/usuario/form.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>inserir</from-outcome>
+            <to-view-id>/cadastro/usuario/form.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+
+      <!--Regras de Navegação Teste registrologin listar ############################## -->
+
+    <navigation-rule>
+        <from-view-id>/cadastro/registrologin/listar.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>menu</from-outcome>
+            <to-view-id>/menu/menuPrincipal.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+<!--Regras de Navegação requisicao  ################################################################################# -->
+
+    <navigation-rule>
+        <from-view-id>/operacao/requisicao/form.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>andamento</from-outcome>
+            <to-view-id>/operacao/requisicao/formAndamento.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>menu</from-outcome>
+            <to-view-id>/menu/menuPrincipal.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/operacao/requisicao/formAndamento.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>menu</from-outcome>
+            <to-view-id>/menu/menuPrincipal.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>requisicao</from-outcome>
+            <to-view-id>/operacao/requisicao/form.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>emulacao</from-outcome>
+            <to-view-id>/operacao/requisicao/formEmulacao.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/operacao/requisicao/formCalibracao.xhtml</from-view-id>
+       <navigation-case>
+            <from-outcome>menu</from-outcome>
+            <to-view-id>/menu/menuPrincipal.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+<!--Fim das Regras de Navegação requisicao  ################################################################################# -->
+    <managed-bean>
+        <managed-bean-name>statushwAction</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.StatushwAction</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>statussistemaAction</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.StatussistemaAction</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>medidaAction</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.MedidaAction</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/operacao/requisicao/listar.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>menu</from-outcome>
+            <to-view-id>/menu/menuPrincipal.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/operacao/requisicao/formEmulacao.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>menu</from-outcome>
+            <to-view-id>/menu/menuPrincipal.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>andamento</from-outcome>
+            <to-view-id>/operacao/requisicao/formAndamento.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+ 
+    <managed-bean>
+        <managed-bean-name>progressAction</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.ProgressAction</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>excelBean</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.ExcelBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/operacao/requisicao/relatorios.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>menu</from-outcome>
+            <to-view-id>/menu/menuPrincipal.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/operacao/requisicao/historicoTransacao.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>menu</from-outcome>
+            <to-view-id>/menu/menuPrincipal.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>sendMail</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.SendMail</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>sendMailLocalhost</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.SendMailLocalhost</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>montarEmailAction</managed-bean-name>
+        <managed-bean-class>br.faetec.backingbeans.MontarEmailAction</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+</faces-config>

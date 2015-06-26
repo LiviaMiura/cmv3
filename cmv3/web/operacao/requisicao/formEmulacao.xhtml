@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/style.css"/>
+        <title>Requisição de Medidas</title>
+    </h:head>
+
+    <h:body>
+
+        <div class="main">
+            <div class="header">
+                <div class="header_resize">
+                    <div class="logo">
+                        <h1> </h1>
+                    </div>
+                    <br/>
+                    <h3>Usuário :
+                        <h:outputText value="#{usuarioLogin.usuarioDTO.nome}"></h:outputText>
+                        - <h:outputText value="#{usuarioLogin.usuarioDTO.cargo.descricao}"></h:outputText>
+                    </h3>
+
+                    <div class="clr"></div>
+                </div>
+            </div></div>
+
+        <div class="body">
+            <div class="body_resize">
+                <div class=" ">
+
+
+                    <f:view>
+
+                        <p:growl id="growl" />
+                        <h:form>
+                            <h4 align="center">
+
+                                <p:menuButton rendered="#{usuarioLogin.usuarioDTO.cargo.idCargo=='1'}"   value="Administração">
+                                    <p:menuitem value="Usuários" update="messages"
+                                                action="/cadastro/usuario/listar"
+                                                icon="ui-icon ui-icon-person"
+                                                ajax="false"
+                                                immediate="true"/>
+                                    <p:menuitem value="Cargos" update="messages"
+                                                action="#{menuAction.cargoListar}"
+                                                icon="ui-icon ui-icon-wrench"
+                                                ajax="false"
+                                                immediate="true"/>
+                                    <p:menuitem value="Log" icon="ui-icon ui-icon-transferthick-e-w"
+                                                action="#{menuAction.loginListar}"
+                                                ajax="false"
+                                                immediate="true"/>
+                                </p:menuButton>
+
+                                <p:menuButton value="Operação">
+                                    <p:menuitem value="Requisição" update="messages"
+                                                action="#{requisicaoAction.requisicao}"
+                                                icon="ui-icon ui-icon-play"
+                                                ajax="false"
+                                                immediate="true"/>
+                                    <p:menuitem value="Calibração" update="messages"
+                                                action="#{requisicaoAction.calibracao}"
+                                                icon="ui-icon ui-icon-arrowrefresh-1-w"
+                                                ajax="false"/>
+                                    <p:menuitem value="Histórico" update="messages"
+                                                action="#{requisicaoAction.historicoRequisicoes}"
+                                                icon="ui-icon ui-icon-document"
+                                                ajax="false"
+                                                immediate="true"/>
+                                    <p:menuitem value="Reset MMF" update="messages"
+                                                action="#{requisicaoAction.enviarStopSW}"
+                                                icon="ui-icon ui-icon-check"
+                                                ajax="false"
+                                                immediate="true"/>
+                                </p:menuButton>
+
+                                <p:menuButton value="Relatórios">
+                                    <p:menuitem value="Requisições" update="messages"
+                                                action="#{menuAction.historicoTransacao}"
+                                                icon="ui-icon ui-icon-document"
+                                                ajax="false"
+                                                immediate="true"/>
+                                    <p:menuitem value="Medidas" update="messages"
+                                                action="#{menuAction.relatorios}"
+                                                icon="ui-icon ui-icon-calculator"
+                                                ajax="false"
+                                                immediate="true"/>
+                                </p:menuButton>
+
+                                <p:menuButton value="Sistema">
+                                    <p:menuitem value="Sair" update="messages"
+                                                action="#{menuAction.logOff}"
+                                                icon="ui-icon ui-icon-home"
+                                                ajax="false"
+                                                immediate="true"/>
+                                </p:menuButton>
+
+                                <p:menuButton value="Ajuda">
+                                    <p:menuitem value="Manual" update="messages"
+                                                action="/arquivo/requisitosCMV.pdf"
+                                                icon="ui-icon ui-icon-document-b"
+                                                ajax="false"
+                                                immediate="true"/>
+                                    <p:menuitem value="Projeto" update="messages"
+                                                action="/arquivo/ManualProjeto2.pdf"
+                                                icon="ui-icon ui-icon-info"
+                                                ajax="false"
+                                                immediate="true"/>
+
+                                    <p:menuitem value="Ajuda Rápida" update="messages"
+                                                action="/arquivo/Ajuda.pdf"
+                                                icon="ui-icon ui-icon-help"
+                                                ajax="false"
+                                                immediate="true"/>
+                                </p:menuButton>
+
+                            </h4>
+
+                            <h2>Requisição de Medidas</h2>
+                            <h5>
+                                <h:panelGrid width="330" columns="3">
+                                    <h:outputLabel value="Centro de Missão:" for="missaoId" />
+                                    <h:selectOneMenu id="missaoId"   value="#{requisicaoAction.requisicaoDTO.missaoId.idMissao}" title="MissaoId">
+                                        <f:selectItems value="#{missaoAction.lista}" var="missaoDTO" itemLabel="#{missaoDTO.descricao}" itemValue="#{missaoDTO.idMissao}"/>
+                                    </h:selectOneMenu>
+                                    <h:message style="color: blue" for="missaoId" />
+
+                                    <h:outputLabel value="Estação Receptora:" for="estacaoId" />
+                                    <h:selectOneMenu id="estacaoId" value="#{requisicaoAction.requisicaoDTO.estacaoId.idEstacao}" title="EstacaoId">
+                                        <f:selectItems value="#{estacaoAction.lista}" var="estacaoDTO" itemLabel="#{estacaoDTO.descricao}" itemValue="#{estacaoDTO.idEstacao}"/>
+                                    </h:selectOneMenu>
+                                    <h:message style="color: blue" for="estacaoId" />
+
+                                    <h:outputLabel value="Satélite:" for="sateliteId" />
+                                    <h:selectOneMenu id="sateliteId" value="#{requisicaoAction.requisicaoDTO.sateliteId.idSatelite}" title="SateliteId">
+                                        <f:selectItems value="#{sateliteAction.lista}"  var="sateliteDTO" itemLabel="#{sateliteDTO.descricao}" itemValue="#{sateliteDTO.idSatelite}"/>
+                                    </h:selectOneMenu>
+                                    <h:message style="color: blue" for="sateliteId" />
+
+                                    <h:outputLabel  value="Número de Grupos:" for="grupos" />
+
+                                    <f:validateLongRange minimum="1" maximum="255">
+
+                                        <p:keyboard
+                                            styleClass="h9"
+                                            value="#{requisicaoAction.requisicaoDTO.grupos}"
+                                            required="true" requiredMessage="O Número de grupos é obrigatório."
+                                            validatorMessage="Entre com um valor entre 1 e 255."
+                                            showMode="button" keypadOnly="true"
+                                            size="7"
+                                            />
+                                    </f:validateLongRange>
+                                    <h:message style="color: blue" for="grupos"/>
+
+
+
+
+                                    <h:outputLabel value="Janela:" for="comandoId"/>
+                                    <h:selectOneRadio value="#{requisicaoAction.requisicaoDTO.comandoId.idComando}">
+                                        <f:selectItem itemLabel="1s" itemValue="1"/>
+                                        <f:selectItem itemLabel="10s" itemValue="2"/>
+                                    </h:selectOneRadio>
+                                    <h:message style="color: blue" for="comandoId"/>
+
+
+                                    <h:outputLabel value="Tipo Aquisição:"/>
+                                    <h:outputText  value="Emulação"></h:outputText>
+                                    <h:message style="color: blue" for="" />
+                                </h:panelGrid>
+
+
+                            </h5>
+
+                            <p:commandButton styleClass="h5" action="#{requisicaoAction.gravar}"
+                                             value="Requisição" ajax="false"
+                                             onclick="pbAjax.cancel(); pbAjax.start();">
+                                <f:param name="idUsuarioLogado"
+                                         value="#{usuarioLogin.usuarioDTO.idUsuario}" />
+
+                                <f:param name="nomeUsuarioLogado"
+                                         value="#{usuarioLogin.usuarioDTO.nome}" />
+
+                            </p:commandButton>
+
+
+
+                            <h6>
+                                <p:progressBar widgetVar="pbAjax" ajax="true" value="#{progressAction.progress}"
+                                               onCompleteUpdate="growl" completeListener="#{progressAction.onComplete}"
+                                               onCancelUpdate="growl" cancelListener="#{progressAction.onCancel}"
+                                               oncomplete="startButton2.enable()"/>
+                            </h6>
+
+
+                        </h:form>
+                    </f:view>
+                </div>
+
+                <div class="clr">
+                    <p class="lf">
+
+
+                        <h:outputText styleClass="h8"  value="#{requisicaoAction.mensagemComandoInvalido}"  rendered="true"/>
+                        <h:outputText styleClass="h8"  value="#{requisicaoAction.mensagemTerminoPrematuro}"  rendered="true"/>
+                        <h:outputText styleClass="h8"  value="#{requisicaoAction.mensagemStatusSistema}"  rendered="true"/>
+
+
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="clr"></div>
+        <div class="footer">
+            <div class="footer_resize">
+                <p class="lf">Copyright 2011 &copy; INPE - Instituto Nacional de Pesquisas Espaciais. Todos os direitos reservados.</p>
+                <div class="clr"></div>
+            </div>
+        </div>
+    </h:body>
+</html>

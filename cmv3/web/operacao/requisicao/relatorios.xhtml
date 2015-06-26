@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/style.css"/>
+        <title>Relatórios</title>
+    </h:head>
+    <h:body>
+        <div class="main">
+            <div class="header">
+                <div class="header_resize">
+                    <div class="logo">
+                        <h1> </h1>
+                    </div>
+                    <br/>
+                    <h3>Usuário:
+                        <h:outputText value="#{usuarioLogin.usuarioDTO.nome}"></h:outputText>
+                        - <h:outputText value="#{usuarioLogin.usuarioDTO.cargo.descricao}"></h:outputText>
+                    </h3>
+
+                    <div class="clr"></div>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="body_resize">
+
+                <f:view>
+                    <p:growl id="growl" />
+                    <h:form>
+                        <h4 align="center">
+                            <p:menuButton rendered="#{usuarioLogin.usuarioDTO.cargo.idCargo=='1'}"   value="Administração">
+                                <p:menuitem value="Usuários" update="messages"
+                                            action="/cadastro/usuario/listar"
+                                            icon="ui-icon ui-icon-person"
+                                            ajax="false"
+                                            immediate="true"/>
+                                <p:menuitem value="Cargos" update="messages"
+                                            action="#{menuAction.cargoListar}"
+                                            icon="ui-icon ui-icon-wrench"
+                                            ajax="false"
+                                            immediate="true"/>
+                                <p:menuitem value="Log" icon="ui-icon ui-icon-transferthick-e-w"
+                                            action="#{menuAction.loginListar}"
+                                            ajax="false"
+                                            immediate="true"/>
+                            </p:menuButton>
+
+                            <p:menuButton value="Operação">
+                                <p:menuitem value="Requisição" update="messages"
+                                            action="#{requisicaoAction.requisicao}"
+                                            icon="ui-icon ui-icon-play"
+                                            ajax="false"
+                                            immediate="true"/>
+                                <p:menuitem value="Calibração" update="messages"
+                                            action="#{requisicaoAction.calibracao}"
+                                            icon="ui-icon ui-icon-arrowrefresh-1-w"
+                                            ajax="false"/>
+                                <p:menuitem value="Histórico" update="messages"
+                                            action="#{requisicaoAction.historicoRequisicoes}"
+                                            icon="ui-icon ui-icon-document"
+                                            ajax="false"
+                                            immediate="true"/>
+                                <p:menuitem value="Reset MMF" update="messages"
+                                            action="#{requisicaoAction.enviarStopSW}"
+                                            icon="ui-icon ui-icon-check"
+                                            ajax="false"
+                                            immediate="true"/>
+                            </p:menuButton>
+
+                            <p:menuButton value="Relatórios">
+                                <p:menuitem value="Requisições" update="messages"
+                                            action="#{menuAction.historicoTransacao}"
+                                            icon="ui-icon ui-icon-document"
+                                            ajax="false"
+                                            immediate="true"/>
+                                <p:menuitem value="Medidas" update="messages"
+                                            action="#{menuAction.relatorios}"
+                                            icon="ui-icon ui-icon-calculator"
+                                            ajax="false"
+                                            immediate="true"/>
+                            </p:menuButton>
+
+                            <p:menuButton value="Sistema">
+                                <p:menuitem value="Sair" update="messages"
+                                            action="#{menuAction.logOff}"
+                                            icon="ui-icon ui-icon-home"
+                                            ajax="false"
+                                            immediate="true"/>
+                            </p:menuButton>
+
+                            <p:menuButton value="Ajuda">
+                                <p:menuitem value="Manual" update="messages"
+                                            action="/arquivo/requisitosCMV.pdf"
+                                            icon="ui-icon ui-icon-document-b"
+                                            ajax="false"
+                                            immediate="true"/>
+                                <p:menuitem value="Projeto" update="messages"
+                                            action="/arquivo/ManualProjeto2.pdf"
+                                            icon="ui-icon ui-icon-info"
+                                            ajax="false"
+                                            immediate="true"/>
+
+                                <p:menuitem value="Ajuda Rápida" update="messages"
+                                            action="/arquivo/Ajuda.pdf"
+                                            icon="ui-icon ui-icon-help"
+                                            ajax="false"
+                                            immediate="true"/>
+                            </p:menuButton>
+
+                        </h4>
+                        <h2>Relatórios de Medidas</h2>
+
+                        <h6>
+                            <p:dataTable value="#{respostaAction.lista}" var="item"
+                                         paginator="true" rows="10"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,20">
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Resposta"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idResposta}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Requisicao"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.requisicaoId.idRequisicao}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Resultado"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.resultadoId.descricao}"/>
+                                </p:column>
+
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Comando"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.requisicaoId.comandoId.descricao}"/>
+                                </p:column>
+
+
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Estação"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.requisicaoId.sateliteId.descricao}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Usuário"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.requisicaoId.usuarioId.nome}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Datação"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.requisicaoId.datacao}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="GMT-3"/>
+                                    </h:outputText>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Grupos"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.requisicaoId.grupos}">
+
+                                    </h:outputText>
+                                </p:column>
+
+
+                            </p:dataTable>
+
+                        </h6>
+
+                        <h2>Grupos de Medidas</h2>
+                        <h6>
+                            <p:dataTable  id="tbl" value="#{medidaAction.lista}" var="item"
+                                          paginator="true" rows="10"
+                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                          rowsPerPageTemplate="5,10">
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Medida"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idMedida}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Resposta"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.respostaId.idResposta}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="UTC"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.utc}"/>
+                                </p:column>
+
+
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Mensagem"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.mensagem}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Totalizador"/>
+                                    </f:facet>
+                                    <h:outputText style="text-align:right " value="#{item.totalizador}">
+                                        <f:convertNumber type="Number" locale="pt_br" pattern="#,000"/>
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Intervalo"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.intervalo}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Frequência"/>
+                                    </f:facet>
+                                    <h:outputText style="color: blue"  value="#{item.frequencia}">
+                                        <f:convertNumber type="Number" locale="pt_br" pattern="#,000.000"/>
+                                    </h:outputText>
+                                </p:column>
+
+                            </p:dataTable>
+                        </h6>
+
+
+                        <h2>Selecione o tipo de Arquivo para geração:</h2>
+                        <h5>
+
+                            <h:commandLink>
+                                <p:graphicImage value="/imagens/excel.bmp"  title="Excel"/>
+                                <p:dataExporter type="xls" target="tbl" fileName="MedidasRequisição" />
+                            </h:commandLink>
+                            <h:commandLink>
+                                <p:graphicImage value="/imagens/pdf.bmp" title="PDF" />
+                                <p:dataExporter type="pdf" target="tbl" fileName="MedidasRequisição"/>
+                            </h:commandLink>
+                            <h:commandLink>
+                                <p:graphicImage value="/imagens/csv.bmp" title="csv" />
+                                <p:dataExporter type="csv" target="tbl" fileName="MedidasRequisição" pageOnly="true" />
+                            </h:commandLink>
+                            <h:commandLink>
+                                <p:graphicImage value="/imagens/xml.bmp" title="xml" />
+                                <p:dataExporter type="xml" target="tbl" fileName="MedidasRequisição" />
+                            </h:commandLink>
+                        </h5>
+
+
+
+
+
+                    </h:form>
+                </f:view>
+            </div>
+        </div>
+        <div class="clr"></div>
+        <div class="footer">
+            <div class="footer_resize">
+                <p class="lf">Copyright 2011 &copy; INPE - Instituto Nacional de Pesquisas Espaciais. Todos os direitos reservados.</p>
+                <div class="clr"></div>
+            </div>
+        </div>
+    </h:body>
+
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="operacao/requisicao/formEmulacao.xhtml" x="443" y="-106" zoom="true"/>
+        <Node id="operacao/requisicao/listar.xhtml" x="414" y="440" zoom="true"/>
+        <Node id="cadastro/usuario/form.xhtml" x="-183" y="450" zoom="true"/>
+        <Node id="cadastro/registrologin/listar.xhtml" x="-516" y="321" zoom="true"/>
+        <Node id="cadastro/cargo/form.xhtml" x="123" y="452" zoom="true"/>
+        <Node id="operacao/requisicao/formCalibracao.xhtml" x="253" y="-207" zoom="true"/>
+        <Node id="menu/menuPrincipal.xhtml" x="-50" y="-1" zoom="false"/>
+        <Node id="operacao/requisicao/form.xhtml" x="625" y="59" zoom="false"/>
+        <Node id="cadastro/cargo/listar.xhtml" x="121" y="332" zoom="true"/>
+        <Node id="operacao/requisicao/formAndamento.xhtml" x="569" y="301" zoom="true"/>
+        <Node id="resources/ezcomp/out.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="index.xhtml" x="-32" y="-204" zoom="false"/>
+        <Node id="operacao/requisicao/historicoTransacao.xhtml" x="246" y="93" zoom="true"/>
+        <Node id="operacao/requisicao/relatorios.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="cadastro/usuario/listar.xhtml" x="-187" y="332" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

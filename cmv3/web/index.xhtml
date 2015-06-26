@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/style.css"/>
+        <title>CMV3 0206</title>
+    </h:head>
+
+    <h:body>
+
+        <div class="main">
+            <div class="header">
+                <div class="header_resize">
+                    <div class="logo">
+                        <h1> </h1>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+            </div></div>
+
+        <div class="body">
+            <div class="body_resize">
+                <div class="">
+                    <br/><br/><br/>
+                    <h2>
+                        Software de Controle Conjunto de Medida de Velocidade de Satélites.
+                    </h2>
+
+                    <p:growl id="growl" />
+                    <h:form id="userForm">
+
+                        <p>Login
+                            <h:inputText 
+                                id="loginID"  value="#{usuarioLogin.usuarioDTO.login}"
+                                validator="#{usuarioLogin.checkLogin}"
+                                required="true" requiredMessage="Por favor, informe o Usuário!"
+                                validatorMessage=" Usuário: mínimo 3, máximo 40 caracteres.">
+                                <f:validateLength minimum="1" maximum="6"></f:validateLength>
+                            </h:inputText>
+
+
+                        </p>
+                        <br/>
+
+
+                        <p>Senha
+                            <h:inputSecret
+                                id="senhaID"   value="#{usuarioLogin.usuarioDTO.senha}"
+                                validator="#{usuarioLogin.checkLogin}"
+                                required="true" requiredMessage="Por favor, informe a senha!"
+
+                                />
+
+                        </p>
+                        <br/>
+                        <b>
+                            <p:commandButton action="#{usuarioLogin.validarLogin}" 
+                                             value="Entrar"  ajax="false"/>
+                        </b>
+
+
+                    </h:form>
+                </div>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer_resize">
+                <p class="lf">Copyright 2011 &copy; INPE - Instituto Nacional de Pesquisas Espaciais. Todos os direitos reservados.</p>
+                <div class="clr"></div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
+
+
+
+
+
+
