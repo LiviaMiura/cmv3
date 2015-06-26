@@ -18,7 +18,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *Métodos para Montar e enviar um email com arquivo anexo.
-@author Antonio Cassiano
+@author Antonio Cassiano Julio 
+* fim
+* 
  **/
 public class MontarEmailAction implements Serializable {
 
@@ -48,7 +50,10 @@ public class MontarEmailAction implements Serializable {
         SateliteDTO selecionado = sateliteDAO.selecionar(x); //busca o objeto SateliteDTO completo indicado pelo variavel x
         requisicaoDTO.setSateliteId(selecionado);           //"seta" o objeto requisicaoDTO com o objeto SateliteDTO completo passado pela variavel selecionado
         String satelite = requisicaoDTO.getSateliteId().getDescricao();
-
+/*
+        teste para subir versão
+        */
+        
         EstacaoDAO estacaoDAO = new EstacaoDAO();
         requisicaoDTO.setEstacaoId(estacaoDAO.selecionar(requisicaoDTO.getEstacaoId()));
         String estacao = requisicaoDTO.getEstacaoId().getDescricao();

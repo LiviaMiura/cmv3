@@ -40,7 +40,11 @@ public class Cargo implements Serializable {
     public Cargo(Integer idCargo) {
         this.idCargo = idCargo;
     }
-
+/*
+    hi
+    
+    oi
+    */
     public Integer getIdCargo() {
         return idCargo;
     }
